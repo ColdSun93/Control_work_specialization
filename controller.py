@@ -6,35 +6,47 @@ import work_data as wd
 name_file = 'data.txt'
 
 def button_click():
+    data = {}
     num = vw.ViewMenu()
-    data = id.Open_file(name_file)
-    wd.init_data(data)
     match num:
         case 1:
-            wd.print_note()
-            view_data()
+            data = id.Open_file(name_file)
+            wd.print_all_notes(data)
+            # view_data(data)
         case 2:
-            wd.add_note()
-            view_data()
+            data = wd.write_data(data)
+            # view_data(data)
         case 3:
             exit()
-    quit()
-
+    view_data(data)
+    # quit()
 
  
-def view_data():
+def view_data(data):
     num = vw.WorkMenu()
 
     match num:
         case 1:
-            wd.add_note()
+            data = wd.add_note(data)
         case 2:
-            wd.search_note()
+            wd.edit_note()
         case 3:
-            wd.del_note()
+            data = wd.del_note()
         case 4:
-            wd.print_note()
+            wd.print_all_notes(data)
         case 5:
             exit()
-    ed.Save_file(name_file, data, 'w')
-    quit()
+
+    view_quit(data)
+    # quit()
+
+
+def view_quit(data):
+    num = vw.ViewWrite
+    match num:
+        case 1:
+            ed.Save_file(name_file, data, 'w')
+        case 2:
+            view_data(data)
+        case 3:
+            exit()
