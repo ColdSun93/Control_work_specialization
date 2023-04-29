@@ -38,7 +38,6 @@ def edit_note(data):
     for key_id in data.keys():
         if key_id == id:
             return write_data(data), print('Запись изменена')
-            # print('Запись изменена')
         else:
             print('Искомая запись отсутствует')
     
